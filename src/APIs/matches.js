@@ -62,3 +62,19 @@ export const getUserPredictionForMatch = ({ matchid }) => {
         return resolve(data.data);
     });
 };
+
+export const makeUserPrediction = (prediction, matchid) => {
+    return new Promise(async (resolve, reject) => {
+        const result = await fetch(`${BASE_URL}/create_prediction`, {
+            method: "POST",
+            body: JSON.stringify({ prediction, matchid }),
+            headers: headers,
+        });
+        const data = await result.json();
+        console.log(data);
+        if (result.status !== 200) {
+            return reject(data.message);
+        }
+        return resolve(data.data);
+    });
+};

@@ -49,3 +49,28 @@
     background-color: #0077b6;
     cursor: pointer;
 }
+
+.alreadyHeader {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.predictionTeam {
+    display: flex;
+}
+
+.predictionTeamImage {
+    width: 2rem;
+    margin-right: 1rem;
+}
+
+.predictionTeamName {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.result {
+    font-size: 2rem;
+    color: #fff;
+}

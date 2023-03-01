@@ -1,13 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getUserPredictionForMatch } from "../APIs/matches";
+import { getUserPredictionForMatch, makeUserPrediction } from "../APIs/matches";
 import predictionCss from "./Prediction.module.css";
+import csk from "../assets/csk.png";
 
 const Prediction = ({ match, teamA, teamB }) => {
-    const countDownDate = new Date("Feb 29 2023 16:37:52").getTime();
+    const date = Date(match?.date);
+    const countDownDate = new Date(
+        `${date.substring(0, 15)} 16:00:00`
+    ).getTime();
     const initalTimer = { days: 0, hours: 0, minutes: 0, seconds: 0 };
     const [timer, setTimer] = useState(initalTimer);
+    const timeUp = useRef(false);
 
     const [prediction, setPrediction] = useState(null);
+
+    const makePrediction = (pred) => {
+        makeUserPrediction(pred, match.id).then((result) => {
+            setPrediction(result);
+        });
+    };
 
     useEffect(() => {
         // if (dataFetched.current) return;
@@ -39,41 +50,155 @@ const Prediction = ({ match, teamA, teamB }) => {
         }, 1000);
     }, [countDownDate]);
 
-    const NotPredicted = (
-        <div className={predictionCss.prediction}>
-            <div className={predictionCss.prdictionTime}>
-                <h4 className={predictionCss.timeLeft}>
-                    Time Left to make a prediction
-                </h4>
-                <div className={predictionCss.timer}>
-                    <span className={predictionCss.time}>
-                        {timer.days} Days
-                    </span>
-                    <span className={predictionCss.time}>
-                        {timer.hours} Hours
-                    </span>
-                    <span className={predictionCss.time}>
-                        {timer.minutes} Minutes
-                    </span>
-                    <span className={predictionCss.time}>
-                        {timer.seconds} Seconds
-                    </span>
-                </div>
+    const MatchOver = () => {
+        return match?.updated ? (
+            <div className={predictionCss.prediction}>
+                {prediction ? (
+                    <>
+                        <h1 className={predictionCss.alreadyHeader}>
+                            Match Over, Your Prediction for Match
+                        </h1>
+                        <div className={predictionCss.predictionTeam}>
+                            {prediction.prediction !== "draw" ? (
+                                <img
+                                    className={
+                                        predictionCss.predictionTeamImage
+                                    }
+                                    src={csk}
+                                    alt="Team"
+                                />
+                            ) : (
+                                ""
+                            )}
+                            <p className={predictionCss.predictionTeamName}>
+                                {prediction.prediction === teamA?.id
+                                    ? teamA?.name
+                                    : prediction.prediction === teamB?.id
+                                    ? teamB?.name
+                                    : "Draw"}
+                            </p>
+                        </div>
+                        <p className={predictionCss.result}>
+                            {prediction === null
+                                ? "You didn't male any predictions for the match !!!!"
+                                : prediction?.result
+                                ? "Congratulations your prediction was correct"
+                                : "Your prediction failed, Better luck nect time"}
+                        </p>
+                    </>
+                ) : (
+                    <></>
+                )}
             </div>
-            <div className={predictionCss.predict}>
-                <h4 className={predictionCss.predictHeader}>
-                    Choose Today's Match's Outcome:
-                </h4>
-                <div className={predictionCss.predictButtons}>
-                    <span className={predictionCss.outCome}>{teamA?.name}</span>
-                    <span className={predictionCss.outCome}>{teamB?.name}</span>
-                    <span className={predictionCss.outCome}>Draw</span>
-                </div>
-            </div>
-        </div>
-    );
+        ) : (
+            ""
+        );
+    };
 
-    return <>{prediction ? <></> : NotPredicted}</>;
+    const PredictionAlreadyCreated = () => {
+        return (
+            <div className={predictionCss.prediction}>
+                <h1 className={predictionCss.alreadyHeader}>
+                    Your Prediction for Match
+                </h1>
+                <div className={predictionCss.predictionTeam}>
+                    {prediction.prediction !== "draw" ? (
+                        <img
+                            className={predictionCss.predictionTeamImage}
+                            src={csk}
+                            alt="Team"
+                        />
+                    ) : (
+                        ""
+                    )}
+                    <p className={predictionCss.predictionTeamName}>
+                        {prediction.prediction === teamA?.id
+                            ? teamA?.name
+                            : prediction.prediction === teamB?.id
+                            ? teamB?.name
+                            : "Draw"}
+                    </p>
+                </div>
+                <p className={predictionCss.result}>
+                    {prediction?.result === null
+                        ? "Result Has not been declared yet !!!! STAY TUNED"
+                        : prediction?.result
+                        ? "Congratulations your prediction was correct"
+                        : "Your prediction failed, Better luck nect time"}
+                </p>
+            </div>
+        );
+    };
+
+    const NotPredicted = () => {
+        return (
+            <div className={predictionCss.prediction}>
+                <div className={predictionCss.prdictionTime}>
+                    <h4 className={predictionCss.timeLeft}>
+                        Time Left to make a prediction
+                    </h4>
+                    <div className={predictionCss.timer}>
+                        <span className={predictionCss.time}>
+                            {timer.days} Days
+                        </span>
+                        <span className={predictionCss.time}>
+                            {timer.hours} Hours
+                        </span>
+                        <span className={predictionCss.time}>
+                            {timer.minutes} Minutes
+                        </span>
+                        <span className={predictionCss.time}>
+                            {timer.seconds} Seconds
+                        </span>
+                    </div>
+                </div>
+                <div className={predictionCss.predict}>
+                    <h4 className={predictionCss.predictHeader}>
+                        Choose Today's Match's Outcome:
+                    </h4>
+                    <div className={predictionCss.predictButtons}>
+                        <span
+                            className={predictionCss.outCome}
+                            onClick={() => makePrediction(teamA?.id)}
+                        >
+                            {teamA?.name}
+                        </span>
+                        <span
+                            className={predictionCss.outCome}
+                            onClick={() => makePrediction(teamB?.id)}
+                        >
+                            {teamB?.name}
+                        </span>
+                        <span
+                            className={predictionCss.outCome}
+                            onClick={() => makePrediction("Draw")}
+                        >
+                            Draw
+                        </span>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <>
+            {/* {match?updated ? <MatchOver /> : ""} */}
+            {match?.updated ? (
+                <MatchOver />
+            ) : (
+                <>
+                    {prediction ? (
+                        <PredictionAlreadyCreated />
+                    ) : match?.updated ? (
+                        <></>
+                    ) : (
+                        <NotPredicted />
+                    )}
+                </>
+            )}
+        </>
+    );
 };
 
 export default Prediction;
