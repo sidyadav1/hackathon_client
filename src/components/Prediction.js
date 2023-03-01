@@ -8,11 +8,11 @@ import CountdownTimer from "./Timer";
 
 const Prediction = ({ match, teamA, teamB }) => {
   const [{ user, predictions }, dispatch] = useStateValue();
-//   const date = Date(match?.date);
-//   const countDownDate = new Date(`${date.substring(0, 15)} 16:00:00`).getTime();
-   const date = new Date("March 02 2023").getTime();
-   const newTime = date + 1000 * 60 * 60 * 20;
-   const predicTime = newTime;
+  const date = Date(match?.date);
+  const countDownDate = new Date(`${date.substring(0, 15)} 16:00:00`).getTime();
+//    const date = new Date("March 02 2023").getTime();
+//    const newTime = date + 1000 * 60 * 60 * 20;
+//    const predicTime = newTime;
   // const initalTimer = { days: 0, hours: 0, minutes: 0, seconds: 0 };
   // const [timer, setTimer] = useState(initalTimer);
   // const timeUp = useRef(false);
@@ -200,7 +200,7 @@ const Prediction = ({ match, teamA, teamB }) => {
             <h4 className={predictionCss.timeLeft}>
               Time Left to make a prediction
             </h4>
-            <CountdownTimer targetDate={predicTime} />
+            <CountdownTimer targetDate={countDownDate} />
           </span>
 
           <p className={predictionCss.notLoggedIn}>

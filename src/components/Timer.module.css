@@ -53,6 +53,9 @@
   /* background: #0077b6; */
   color: white;
   border-radius: 20px;
+  background: linear-gradient(to Right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));   
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .countdown {
@@ -67,6 +70,9 @@
   margin-right: 2rem;
   margin-left: 2rem;
   font-size: xx-large;
+  color: white;
+  text-shadow: 0 0 20px #48C8FF;
+
 }
 
 .countdown > span {
@@ -74,3 +80,16 @@
   font-size: 0.75rem;
   line-height: 1rem;
 }
+
+.timer_expire{
+    /* font-size:xx-large;
+    color:black ;
+    text-shadow: 0 0 25px #000; */
+    font-size: xx-large;
+    color: white;
+    text-shadow: 0 0 20px #48C8FF;
+    background: linear-gradient(to Right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));   
+    border-radius: 10px;
+    padding: 10px;
+}
+

@@ -5,9 +5,8 @@ import styles from "./Timer.module.css";
 
 const ExpiredNotice = () => {
   return (
-    <div className="expired-notice">
-      <span>Expired!!!</span>
-      <p>Please select a future date and time.</p>
+    <div className={styles.show_counter}>
+      <div className={styles.timer_expire}>Time Up!!</div>
     </div>
   );
 };

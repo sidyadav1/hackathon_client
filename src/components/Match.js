@@ -9,7 +9,7 @@ import {
   getUsersLeaderBoard,
 } from "../APIs/matches";
 
-const Home = () => {
+const Match = () => {
   const dataFetched = useRef(false);
   const [todayMatch, setTodayMatch] = useState(null);
   const [teamA, setTeamA] = useState(null);
@@ -39,7 +39,7 @@ const Home = () => {
     });
 
     getUpcomingMatches(upcomingMatchesOffset).then((result) => {
-      console.log(result);
+      console.log("res",result);
       upcomingMatchesOffset.current = upcomingMatchesOffset.current + 10;
       setupcomingMatches((u) => {
         return [...u, ...result.upcomingMatches];
@@ -56,17 +56,18 @@ const Home = () => {
     const date = new Date(parseInt(seconds));
     return date.toString().substring(0, 15);
   };
+ 
 
   return (
     <div className={homePageCss.home}>
       <div className={homePageCss.heroSection}>
         <div className={homePageCss.heroContainer}>
           <div className={homePageCss.heroHeader}>
-            <h1>Cricket Predictions</h1>
+            <h1> - 14:00 IST</h1>
             <p className={homePageCss.heroAbout}>
-              If you're looking for high-quality and accurate cricket
-              predictions and the today match prediction for all International
-              tests and major T20 and T10 leagues, you're on the right page.
+              Choose the team you think win the next T20 match, Answer the
+              prediction question as accurately as possible & you can win
+              amazing prizes!
             </p>
           </div>
           <div className={homePageCss.todayMatch}>
@@ -170,4 +171,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Match;

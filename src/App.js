@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login.JS";
 import Register from "./components/Register";
 import { useEffect } from "react";
+import Match from './components/Match'
 import { BASE_URL, headers } from "./APIs/fetch";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/registration" element={<Register />} />
                     <Route exact path="/" element={<Home />} />
+                    <Route path="/match" element={<Match/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
