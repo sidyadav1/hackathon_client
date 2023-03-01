@@ -1,0 +1,236 @@
+.heroSection {
+    min-height: calc(100vh - 50px);
+    padding: 5rem 2rem;
+    background: url("../assets/hero_background.png");
+    margin-bottom: 3rem;
+}
+
+.heroContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1350px;
+    margin: auto;
+}
+
+.heroHeader {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 3rem;
+}
+
+.heroHeader > h1 {
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bolder;
+}
+
+.heroHeader > p {
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.todayMatch {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.todayMatchHeader {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.todayTeams {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.team {
+    width: 10rem;
+    max-width: 10rem;
+    margin: 0 10rem;
+}
+
+.teamImage {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.teamName {
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.teamVS {
+    width: 8rem;
+}
+
+.vsImage {
+    width: 100%;
+}
+
+.matches {
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.matchesContainer {
+    width: 100%;
+    max-width: 1350px;
+    margin: auto;
+}
+
+.upcomingMatcheHeader {
+    margin-bottom: 2rem;
+}
+
+.upcoming {
+    display: flex;
+    overflow: auto;
+    width: 100%;
+    position: relative;
+    /* box-shadow: inset -20px 0px 30px -20px #00000019; */
+}
+
+.upcomingMatch {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 15rem;
+    border: 0.1rem solid lightgray;
+    border-radius: 1rem;
+    margin: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.upcomingDate {
+    color: gray;
+    margin-bottom: 1rem;
+}
+
+.upcomingTeams {
+    width: 15rem;
+    margin-bottom: 0.5rem;
+}
+
+.upcomingTeam {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.upcomingTeamImage {
+    width: 3rem;
+    margin-right: 0.5rem;
+}
+
+.upcomingTeamName {
+    color: #000;
+    font-weight: bold;
+}
+
+.upcomingVS {
+    color: #000;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.goToPrediction {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 1.5rem;
+    background-color: #0077b6;
+    color: #fff;
+    text-align: center;
+}
+
+.leaderboard {
+    width: 100%;
+    padding: 2rem;
+}
+
+.leaderboardContainer {
+    width: 100%;
+    width: 1350px;
+    margin: auto;
+}
+
+.leaderboardHeader {
+    margin-bottom: 2rem;
+}
+
+.leaderboardTableHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #019560;
+    width: 100%;
+    padding: 0.5rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.leaderboardTableScore {
+    width: 50%;
+}
+
+.leaders {
+    list-style: none;
+    width: 100%;
+    max-height: 80vh;
+    margin-bottom: 2rem;
+}
+
+.leaderBoardUser {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.leaderBoardUser:nth-child(odd) {
+    background-color: #01956186;
+}
+
+.leaderBoardUser:nth-child(even) {
+    background-color: #12b57c3a;
+}
+
+.leaderboardImage {
+    width: 3rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.leaderboardName {
+    display: flex;
+    align-items: center;
+}
+
+.leaderboardName,
+.leaderboardScore {
+    width: 50%;
+    font-weight: bold;
+}
+
+.fetchMoreLeaderBoard {
+    display: block;
+    width: 100%;
+    background-color: #0077b6;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    color: #fff;
+    margin-top: 2rem;
+}

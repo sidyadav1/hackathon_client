@@ -1,0 +1,51 @@
+.prediction {
+    width: 100%;
+    background: linear-gradient(
+        to Right,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+    );
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.prdictionTime {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.timer {
+    display: flex;
+}
+
+.timeLeft {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.time {
+    color: #fff;
+    margin: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.predictHeader {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.predictButtons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.outCome {
+    margin: 0 1rem;
+    padding: 1rem 10rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    background-color: #0077b6;
+    cursor: pointer;
+}
