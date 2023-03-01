@@ -50,6 +50,8 @@ const Register = () => {
 
         // email validation
         const email = inputValues.email;
+        if(email.length>0)
+        {
         if (!inputValues.email.trim()) {
             errors.email = "Email is required";
         } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
@@ -57,9 +59,11 @@ const Register = () => {
         } else {
             errors.email = "";
         }
-
+    }
         //password validation
         const password = inputValues.password;
+        if(password.length)
+        {
         if (!password) {
             errors.password = "password is required";
         } else if (/^^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
@@ -68,8 +72,10 @@ const Register = () => {
         } else {
             errors.password = "";
         }
-
+    }
         const cpassword = inputValues.cpassword;
+        if(cpassword.length>0)
+        {
         if (!cpassword) {
             errors.cpassword = "Re-enter password";
         } else if (cpassword !== inputValues.password) {
@@ -77,6 +83,7 @@ const Register = () => {
         } else {
             errors.cpassword = "";
         }
+    }
     };
     useEffect(() => {
         checkValidation();
@@ -94,95 +101,85 @@ const Register = () => {
     };
 
     return (
-        <>
-            <div className={styles.backgroundR}>
-                <div className={`${styles.containerR}`}>
-                    <h1 className={`${styles.headerR}`}> Register</h1>
-                    <div className="form">
-                        <form>
-                            <div className={styles.inputcontainer}>
-                                <div className={styles.label}>Name </div>
-                                <input
-                                    className={styles.inputtext}
-                                    placeholder="Enter your name"
-                                    type="text"
-                                    name="name"
-                                    onChange={(e) => handleSubmit(e)}
-                                    value={inputValues.name}
-                                    required
-                                />
-                                <p className={styles.error}></p>
-                            </div>
-                            <div className={styles.inputcontainer}>
-                                <div className={styles.label}>Email </div>
-                                <input
-                                    className={styles.inputtext}
-                                    placeholder="Enter your email"
-                                    type="email"
-                                    name="email"
-                                    onChange={(e) => handleSubmit(e)}
-                                    value={inputValues.email}
-                                    required
-                                />
-                                {
-                                    <p className={styles.error}>
-                                        {validation.email}
-                                    </p>
-                                }
-                            </div>
-
-                            <div className={styles.inputcontainer}>
-                                <div className={styles.label}>Password </div>
-                                <input
-                                    className={styles.inputtext}
-                                    placeholder="Enter your password"
-                                    type="text"
-                                    name="password"
-                                    onChange={(e) => handleSubmit(e)}
-                                    value={inputValues.password}
-                                    required
-                                />
-                                {<p className="error">{validation.password}</p>}
-                            </div>
-
-                            <div className={styles.inputcontainer}>
-                                <div className={styles.label}>
-                                    Confirm Password{" "}
-                                </div>
-                                <input
-                                    className={styles.inputtext}
-                                    placeholder="Re-enter your password"
-                                    type="text"
-                                    name="cpassword"
-                                    onChange={(e) => handleSubmit(e)}
-                                    value={inputValues.cpassword}
-                                    required
-                                />
-                                {
-                                    <p className="error">
-                                        {validation.cpassword}
-                                    </p>
-                                }
-                            </div>
-                            <input
-                                type="submit"
-                                name="submit"
-                                className={styles.inputsubmit}
-                                value="Register"
-                                onClick={(e) => handleSubmit2(e)}
-                            />
-
-                            <div className={styles.already}>
-                                Already registered{" "}
-                                <Link to="/Login" className={styles.link}>
-                                    Login
-                                </Link>
-                            </div>
-                        </form>
-                    </div>
+      <>
+        <div className={styles.backgroundR}>
+          <div className={`${styles.containerR}`}>
+            <h1 className={`${styles.headerR}`}> Register</h1>
+            <div className="form">
+              <form>
+                <div className={styles.inputcontainer}>
+                  <div className={styles.label}>Name </div>
+                  <input
+                    className={styles.inputtext}
+                    placeholder="Enter your name"
+                    type="text"
+                    name="name"
+                    onChange={(e) => handleSubmit(e)}
+                    value={inputValues.name}
+                    required
+                  />
+                  <p className={styles.error}></p>
                 </div>
+                <div className={styles.inputcontainer}>
+                  <div className={styles.label}>Email </div>
+                  <input
+                    className={styles.inputtext}
+                    placeholder="Enter your email"
+                    type="email"
+                    name="email"
+                    onChange={(e) => handleSubmit(e)}
+                    value={inputValues.email}
+                    required
+                  />
+                  {<p className={styles.error}>{validation.email}</p>}
+                </div>
+
+                <div className={styles.inputcontainer}>
+                  <div className={styles.label}>Password </div>
+                  <input
+                    className={styles.inputtext}
+                    placeholder="Enter your password"
+                    type="text"
+                    name="password"
+                    onChange={(e) => handleSubmit(e)}
+                    value={inputValues.password}
+                    required
+                  />
+                  {<p className={styles.error}>{validation.password}</p>}
+                </div>
+
+                <div className={styles.inputcontainer}>
+                  <div className={styles.label}>Confirm Password </div>
+                  <input
+                    className={styles.inputtext}
+                    placeholder="Re-enter your password"
+                    type="text"
+                    name="cpassword"
+                    onChange={(e) => handleSubmit(e)}
+                    value={inputValues.cpassword}
+                    required
+                  />
+                  {<p className={styles.error}>{validation.cpassword}</p>}
+                </div>
+                <input
+                  type="submit"
+                  name="submit"
+                  className={styles.inputsubmit}
+                  value="Register"
+                  onClick={(e) => handleSubmit2(e)}
+                />
+
+                <div className={styles.already}>
+                  Already registered{" "}
+                  <Link to="/Login" className={styles.link}>
+                    Login
+                  </Link>
+                </div>
+              </form>
             </div>
-        </>
+          </div>
+        </div>
+      </>
     );
 };
 export default Register;

@@ -1,0 +1,82 @@
+.leaderboard {
+  
+  background-image: url("../assets/bg.png");
+     min-height: 450px;
+    height: auto;
+    margin: 0;
+    color: #fff;
+    box-shadow: 0 7px 30px rgb(95 68 233 / 30%);
+    font-family: "Open Sans", sans-serif;
+    margin-top: -4%;
+    width: 80%;
+    margin-left: 10%;
+}
+.name {
+  padding: 0.2em;
+  background-color: #fcf8e3;
+  font-size: 22px;
+  margin-inline: 13%;
+  padding-inline: 4%;
+}
+.img {
+  width: 8%;
+  margin-right: 4%;
+  margin-left: -22%;
+}
+.tablerow{
+  padding-top: 2%;
+}
+.list {
+  width: 80%;
+}
+.heading {
+  font-size: 18px;
+  color: #fff;
+  padding: 63px 17px 20px;
+  font-size: 44px;
+  text-align: center;
+  margin-top: 4%;
+  font-family: "Times New Roman", Times, serif;
+  margin-bottom: 3%;
+  font-weight: 700;
+}
+.table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 80%;
+  table-layout: fixed;
+}
+.thead {
+  background-color: #05668d;
+  color: #fff;
+}
+tbody {
+  border-bottom: 2px solid antiquewhite;
+  background-color: aliceblue;
+  color: black;
+}
+
+.tablerow:nth-child(2n-1){
+    color: black;
+    box-shadow: inset 5px 9px 5px 2px antiquewhite;;
+    background: whitesmoke;
+  }
+  
+.head,
+.row {
+  padding-inline: 20px;
+  text-align: center;
+  font-size: 20px;
+  padding-top: 1%;
+}
+.trophy {
+  width: 3%;
+  margin-inline: 1%;
+}
+
+.trophy2 {
+  width: 3%;
+  margin-top: -3px;
+  margin-inline: 13px;
+}

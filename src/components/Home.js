@@ -1,6 +1,7 @@
 import homePageCss from "./Home.module.css";
 import teamImage from "../assets/csk.png";
 import vsImage from "../assets/vs.png";
+import LeaderBoard from "../components/Leaderboard"
 import Prediction from "./Prediction";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -168,7 +169,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className={homePageCss.leaderboard}>
+            <LeaderBoard/>
+            {/* <div className={homePageCss.leaderboard}>
                 <div className={homePageCss.leaderboardContainer}>
                     <h2 className={homePageCss.leaderboardHeader}>
                         Top Players
@@ -211,10 +213,10 @@ const Home = () => {
                         {/* <span className={homePageCss.fetchMoreLeaderBoard}>
                             Get more users
                         </span> */}
-                    </ol>
-                </div>
-            </div>
-        </div>
+                    {/* </ol> */}
+                // </div>
+            // </div> */}
+        // </div>
     );
 };
 

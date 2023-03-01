@@ -1,0 +1,23 @@
+
+.container{
+    display: flex;
+}
+.second{
+      width: 20%;
+    margin-top: 5%;
+    margin-left: 14%;
+}
+
+.first{
+    width: 25%;
+}
+.third{
+            width: 38%;
+    margin-left: -7%;
+    margin-top: 5%;
+
+}
+.name,.score{
+    margin-left: 6%;
+}
+
