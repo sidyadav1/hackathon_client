@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Styles.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../APIs/fetch";
+import { useStateValue } from "../StateProvider";
 
 const Register = () => {
+    const navigate = useNavigate();
+    const [_, dispatch] = useStateValue();
     const [inputValues, setInputValue] = useState({
         name: "",
         email: "",
@@ -18,19 +22,22 @@ const Register = () => {
     });
 
     async function callAPI(data) {
-        const res = await fetch(
-            "https://58d7-14-194-2-50.in.ngrok.io/register",
-            {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" },
-                redirect: "follow",
-            }
-        );
-        const data1 = await res.text();
-        console.log(data1);
-
-        return data1;
+        const res = await fetch(`${BASE_URL}/registration`, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" },
+            redirect: "follow",
+        });
+        if (res.status !== 200) {
+            return;
+        }
+        const data1 = await res.json();
+        dispatch({
+            type: "CREATE_USER",
+            user: data1.data.user,
+        });
+        localStorage.setItem("token", data1.data.token);
+        navigate("/");
     }
 
     function handleSubmit(event) {
@@ -80,6 +87,7 @@ const Register = () => {
         const obj = {};
         obj.email = inputValues.email;
         obj.password = inputValues.password;
+        obj.name = inputValues.name;
 
         console.log(obj);
         callAPI(obj);

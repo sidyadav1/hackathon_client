@@ -115,6 +115,7 @@
 .upcomingDate {
     color: gray;
     margin-bottom: 1rem;
+    font-size: 0.6rem;
 }
 
 .upcomingTeams {
@@ -161,7 +162,7 @@
 
 .leaderboardContainer {
     width: 100%;
-    width: 1350px;
+    width: 800px;
     margin: auto;
 }
 
@@ -180,7 +181,12 @@
     font-weight: bold;
 }
 
+.leaderboardTableName {
+    padding-left: 2.5rem;
+}
+
 .leaderboardTableScore {
+    text-align: center;
     width: 50%;
 }
 
@@ -216,21 +222,24 @@
 .leaderboardName {
     display: flex;
     align-items: center;
+    padding-left: 2rem;
 }
 
 .leaderboardName,
 .leaderboardScore {
     width: 50%;
     font-weight: bold;
+    text-align: center;
 }
 
 .fetchMoreLeaderBoard {
     display: block;
-    width: 100%;
+    width: fit-content;
     background-color: #0077b6;
     text-align: center;
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
     color: #fff;
+    margin: auto;
     margin-top: 2rem;
 }

@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { getUserPredictionForMatch, makeUserPrediction } from "../APIs/matches";
 import predictionCss from "./Prediction.module.css";
 import csk from "../assets/csk.png";
+import { useStateValue } from "../StateProvider";
+import { Link } from "react-router-dom";
 
 const Prediction = ({ match, teamA, teamB }) => {
+    const [{ user, predictions }, dispatch] = useStateValue();
     const date = Date(match?.date);
     const countDownDate = new Date(
         `${date.substring(0, 15)} 16:00:00`
@@ -30,7 +33,7 @@ const Prediction = ({ match, teamA, teamB }) => {
                 setPrediction(null);
             });
         // dataFetched.current = true;
-    }, [match?.id]);
+    }, [match?.id, user]);
 
     useEffect(() => {
         setInterval(function () {
@@ -183,8 +186,16 @@ const Prediction = ({ match, teamA, teamB }) => {
 
     return (
         <>
-            {/* {match?updated ? <MatchOver /> : ""} */}
-            {match?.updated ? (
+            {!user ? (
+                <div className={predictionCss.prediction}>
+                    <p className={predictionCss.notLoggedIn}>
+                        You're not logged in, {"         "}Please{" "}
+                        <Link to={"/login"}>Login</Link>/
+                        <Link to={"/registration"}>Register</Link> to make a
+                        prediction.
+                    </p>
+                </div>
+            ) : match?.updated ? (
                 <MatchOver />
             ) : (
                 <>

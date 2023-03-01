@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Styles.module.css";
-import image from "../assets/landingPic.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../APIs/fetch";
+import { useStateValue } from "../StateProvider";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [_, dispatch] = useStateValue();
     const [inputValues, setInputValue] = useState({
         email: "",
         password: "",
@@ -15,16 +18,25 @@ const Login = () => {
     });
 
     async function callAPI(data) {
-        const res = await fetch("https://58d7-14-194-2-50.in.ngrok.io/login", {
+        const res = await fetch(`${BASE_URL}/login`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" },
             redirect: "follow",
         });
-        const data1 = await res.text();
+        const data1 = await res.json();
         console.log(data1);
+        if (res.status !== 200) {
+            return;
+        }
 
-        return data1;
+        localStorage.setItem("token", data1.data.token);
+        dispatch({
+            type: "CREATE_USER",
+            user: data1.data.user,
+        });
+        // console.log(data1.data);
+        navigate("/");
     }
 
     function handleSubmit(event) {
@@ -86,7 +98,7 @@ const Login = () => {
                                 placeholder="Enter your email"
                                 type="email"
                                 name="email"
-                                onMouseOut={(e) => handleSubmit(e)}
+                                onChange={(e) => handleSubmit(e)}
                                 value={inputValues.email}
                                 required
                             />
@@ -100,7 +112,7 @@ const Login = () => {
                                 placeholder="Enter your password"
                                 type="text"
                                 name="password"
-                                onMouseOut={(e) => handleSubmit(e)}
+                                onChange={(e) => handleSubmit(e)}
                                 value={inputValues.password}
                                 required
                             />
@@ -117,7 +129,7 @@ const Login = () => {
 
                         <div className={styles.already}>
                             New User?
-                            <Link to="/Register" className={styles.link}>
+                            <Link to="/registration" className={styles.link}>
                                 Register
                             </Link>
                         </div>

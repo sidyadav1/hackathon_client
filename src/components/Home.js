@@ -39,6 +39,7 @@ const Home = () => {
         });
 
         getUpcomingMatches(upcomingMatchesOffset).then((result) => {
+            console.log(result);
             upcomingMatchesOffset.current = upcomingMatchesOffset.current + 10;
             setupcomingMatches((u) => {
                 return [...u, ...result.upcomingMatches];
@@ -50,6 +51,12 @@ const Home = () => {
 
         dataFetched.current = true;
     }, []);
+
+    const getDate = (seconds) => {
+        const date = new Date(parseInt(seconds));
+        return date.toString().substring(0, 15);
+    };
+
     return (
         <div className={homePageCss.home}>
             <div className={homePageCss.heroSection}>
@@ -117,7 +124,7 @@ const Home = () => {
                                     key={match.id}
                                 >
                                     <p className={homePageCss.upcomingDate}>
-                                        01 Mar 2023 - 14:00 IST
+                                        {getDate(match?.date)} - 14:00 IST
                                     </p>
                                     <div className={homePageCss.upcomingTeams}>
                                         {match?.teams.map((teamId) => {
@@ -147,7 +154,8 @@ const Home = () => {
                                         })}
                                     </div>
                                     <span className={homePageCss.upcomingVS}>
-                                        &#127951; {teamA?.name} VS {teamB?.name}
+                                        &#127951; {teams[match.teams[0]]?.name}{" "}
+                                        vs {teams[match?.teams[1]].name}
                                     </span>
                                     <span
                                         className={homePageCss.goToPrediction}
@@ -200,9 +208,9 @@ const Home = () => {
                                 </li>
                             );
                         })}
-                        <span className={homePageCss.fetchMoreLeaderBoard}>
+                        {/* <span className={homePageCss.fetchMoreLeaderBoard}>
                             Get more users
-                        </span>
+                        </span> */}
                     </ol>
                 </div>
             </div>
